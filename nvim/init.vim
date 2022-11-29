@@ -9,7 +9,7 @@ Plug 'folke/which-key.nvim'
 
 call plug#end()
 
-set relativenumber
+set number
 set nowrap
 
 filetype plugin indent on
