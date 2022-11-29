@@ -17,27 +17,6 @@ syntax on
 
 colorscheme nord
 
-" Code action on <leader>a
-vmap <leader>ca <Plug>(coc-codeaction-selected)<CR>
-nmap <leader>ca <Plug>(coc-codeaction-selected)<CR>
-
-" Format action on <leader>f
-vmap <leader>cf  <Plug>(coc-format-selected)
-nmap <leader>cf  <Plug>(coc-format-selected)
-" Goto definition
-nmap <leader>cd <Plug>(coc-definition)
-" Open definition in a split window
-nmap <leader>cv :vsp<CR><Plug>(coc-definition)<C-h>L
-" Open Nerd Tree
-nmap <leader>ntt :NERDTreeToggle<CR>
-" Telescope find files
-nmap <leader>tf :Telescope find_files<CR>
-" Telescope find buffer
-nmap <leader>tb :Telescope buffers<CR>
-" Telescope grep string
-nmap <leader>tg :Telescope grep_string<CR>
-" Telescope live grep
-nmap <leader>tl :Telescope live_grep<CR>
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: There's always complete item selected by default, you may want to enable
 " no select by `"suggest.noselect": true` in your configuration file.
@@ -54,9 +33,29 @@ inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 lua << EOF
-  require("which-key").setup {
+  local wk = require("which-key")
+  wk.setup {
     -- your configuration comes here
     -- or leave it empty to use the default settings
     -- refer to the configuration section below
   }
+  wk.register({
+    c = {
+	    name = "coc",
+	    a = { "<Plug>(coc-codeaction-selected)<CR>", "code action" },
+	    f = { "<Plug>(coc-format-selected)", "format selected" },
+	    d = { "<Plug>(coc-definition)", "goto def" },
+	    v = { ":vsp<CR><Plug>(coc-definition)<C-h>L", "goto def new window"}
+    },
+    n = {
+	    name = "NERDTree",
+	    t = { ":NERDTreeToggle<CR>", "toggle" }
+    },
+    t = {
+	    name = "Telescope",
+ 	    f = { ":Telescope find_files<CR>", "find files" },
+	    b = { ":Telescope buffers<CR>", "buffers" },
+	    g = { ":Telescope grep_string<CR>", "grep string" },
+	    l = { ":Telescope live_grep<CR>", "live grep" },
+  }, { prefix = "<leader>" })
 EOF
