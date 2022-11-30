@@ -57,5 +57,5 @@ lua << EOF
 	    b = { ":Telescope buffers<CR>", "buffers" },
 	    g = { ":Telescope grep_string<CR>", "grep string" },
 	    l = { ":Telescope live_grep<CR>", "live grep" },
-  }, { prefix = "<leader>" })
+  }, { prefix = "<leader>" }})
 EOF
